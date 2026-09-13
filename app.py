@@ -27,7 +27,73 @@ uploaded_file = st.file_uploader("Paste / Upload Trade Screenshot (PNG, JPG)", t
 if uploaded_file is not None:
     # Display uploaded chart image
     image = Image.open(uploaded_file)
-    st.image(image, caption="Uploaded Target Setup", use_column_width=True)
+    st.image(from PIL import Image
+import streamlit as st
+
+# Ensure the file uploader supports your expected formats
+uploaded_file = st.file_uploader(
+    "Paste / Upload Trade Screenshot (PNG, JPG, PDF)",
+    type=["png", "jpg", "jpeg", "pdf"],
+)
+
+if uploaded_file is not None:
+  # Safely handle PDFs versus standard images to prevent TypeErrors
+  if uploaded_file.type == "application/pdf":
+    import pdf2image
+
+    # Convert the PDF pages into image objects
+    images = pdf2image.convert_from_bytes(uploaded_file.read())
+    image = images[0]  # Selects the first page for display/processing
+  else:
+    image = Image.open(uploaded_file)
+
+  # Pass the validated PIL Image object into st.image
+  st.image(image, caption="Uploaded File Preview")
+from PIL import Image
+import streamlit as st
+
+# Ensure the file uploader supports your expected formats
+uploaded_file = st.file_uploader(
+    "Paste / Upload Trade Screenshot (PNG, JPG, PDF)",
+    type=["png", "jpg", "jpeg", "pdf"],
+)
+
+if uploaded_file is not None:
+  # Safely handle PDFs versus standard images to prevent TypeErrors
+  if uploaded_file.type == "application/pdf":
+    import pdf2image
+
+    # Convert the PDF pages into image objects
+    images = pdf2image.convert_from_bytes(uploaded_file.read())
+    image = images[0]  # Selects the first page for display/processing
+  else:
+    image = Image.open(uploaded_file)
+
+  # Pass the validated PIL Image object into st.image
+  st.image(image, caption="Uploaded File Preview")
+from PIL import Image
+import streamlit as st
+
+# Ensure the file uploader supports your expected formats
+uploaded_file = st.file_uploader(
+    "Paste / Upload Trade Screenshot (PNG, JPG, PDF)",
+    type=["png", "jpg", "jpeg", "pdf"],
+)
+
+if uploaded_file is not None:
+  # Safely handle PDFs versus standard images to prevent TypeErrors
+  if uploaded_file.type == "application/pdf":
+    import pdf2image
+
+    # Convert the PDF pages into image objects
+    images = pdf2image.convert_from_bytes(uploaded_file.read())
+    image = images[0]  # Selects the first page for display/processing
+  else:
+    image = Image.open(uploaded_file)
+
+  # Pass the validated PIL Image object into st.image
+  st.image(image, caption="Uploaded File Preview")
+  )
     
     asset_context = st.text_input("Asset / Timeframe Context (e.g., EUR/USD 1H, BTCUSDT 15m):", "Forex/Crypto Chart")
 
